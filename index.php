@@ -50,8 +50,7 @@ $task = array (
 );
 
 date_default_timezone_set('Europe/Moscow');
-$cur_date = date('d.m.Y');
-echo $cur_date;
+
 
 
 $show_complete_tasks = rand(0, 1);
