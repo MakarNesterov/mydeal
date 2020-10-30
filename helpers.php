@@ -126,19 +126,19 @@ function get_noun_plural_form (int $number, string $one, string $two, string $ma
  * @param array $data Ассоциативный массив с данными для шаблона
  * @return string Итоговый HTML
  */
-function include_template($name, array $data = []) {
-    $name = 'templates/' . $name;
-    $result = '';
+function include_template($name, array $data = []) { // функция принимает на вход путь к шаблону, массивы с данными
+    $name = './templates/' . $name; // в $name указан путь к шаблону
+    $result = '';  // $result делаем пустой строкой
 
-    if (!is_readable($name)) {
-        return $result;
+    if (!is_readable($name)) {  // если $name присвоен несуществующий путь, то
+        return $result;  // вернем пустую строку
     }
 
-    ob_start();
-    extract($data);
-    require $name;
-
-    $result = ob_get_clean();
-
+    ob_start();  // включаем буфер вывода. весь последующий код сохранится в буфере вывода
+    extract($data); // Импортируем в $data переменные из принятого массива
+    require $name;  // подключение шаблона по пути $name
+    
+    $result = ob_get_clean(); // получаем содержимое буфера вывода в $result, очищаем и отключаем буфер вывода
+    
     return $result;
 }
