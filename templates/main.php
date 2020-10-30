@@ -49,7 +49,19 @@
                         $task_completed = "task--completed";
                     }
                     else {$task_completed = "";}
-                    echo '<tr class="tasks__item task '.$task_completed.'">
+                    // задание 6
+                    $date_now = strtotime('now');
+                    $date_task = date_create($value["Дата выполнения"]);
+                    $date_task_u = date_format($date_task, 'U');
+                   
+                    if ($date_task_u - $date_now <= 86400) {
+                        $task_important = 'task--important';
+                    }
+                    else {
+                        $task_important = '';
+                    }
+                    
+                    echo '<tr class="tasks__item task '.$task_important.' '.$task_completed.' ">  
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
                                 <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
