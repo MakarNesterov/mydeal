@@ -58,6 +58,6 @@ $title = "Дела в порядке";
 $content = include_template("main.php", array('project' => $project, 'task'=>$task, 'show_complete_tasks'=>$show_complete_tasks));
 print (include_template("layout.php", array('title' => $title, 'content'=>$content, 'user_name'=>$user_name)));
 
-include_template($content);
+
 
 ?>

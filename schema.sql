@@ -1,4 +1,7 @@
-CREATE DATABASE mydeal; 
+CREATE DATABASE mydeal CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI; 
+
+USE mydeal;
+
 
 CREATE TABLE users (
     id INT NOT NULL AUTO_INCREMENT,
@@ -18,8 +21,8 @@ CREATE TABLE project (
 
 CREATE TABLE task (
     id INT NOT NULL AUTO_INCREMENT,
-    task_name VARCHAR(30),
-    link VARCHAR(30),
+    task_name VARCHAR(100),
+    link VARCHAR(200),
     status_value INT,
     date_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     deadline DATE,
@@ -31,9 +34,9 @@ CREATE TABLE task (
 );
 
 
-CREATE UNIQUE INDEX taskID ON task(task_name);
+CREATE UNIQUE INDEX categoryID ON project(category);
 
-CREATE INDEX categoryID ON project(category); 
+CREATE INDEX linkID ON task(link); 
 
 
 
