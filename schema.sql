@@ -34,7 +34,7 @@ CREATE TABLE task (
 );
 
 
-CREATE UNIQUE INDEX categoryID ON project(category);
+CREATE UNIQUE INDEX categoryID ON project(category, userID);
 
 CREATE INDEX linkID ON task(link); 
 
