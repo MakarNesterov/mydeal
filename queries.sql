@@ -43,3 +43,24 @@ SELECT * FROM `таблица` ORDER BY `category`; вывести все из �
 SELECT p.id, category, username FROM project p  
 JOIN users u
 ON p.userID = u.id WHERE userID = 1;
+
+//показать все проекты Саши
+SELECT p.id, category, username FROM project p  
+JOIN users u
+ON p.userID = u.id WHERE userID = 2;
+
+//показать все задачи  проекта "Входящие"
+SELECT p.id, category, task_name FROM project p  
+JOIN task t
+ON p.id = t.projectID WHERE p.id = 1;
+
+// в таблице task пометить статус задачи "выполнено" у которой id равно 1 (Собеседование в IT компании)
+UPDATE `task` SET `status_value` = '1' WHERE id = 1;
+// у этой же задачи поменять название
+UPDATE `task` SET `task_name` = 'Собеседование в IT фирме' WHERE id = 1;
+
+
+
+
+
+
