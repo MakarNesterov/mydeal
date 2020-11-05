@@ -6,7 +6,7 @@
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
                         <?php for ($i = 0; $i < count($project); $i++) {
-                        $project_item = $project[$i];
+                        $project_item = $project[$i][0];
                         echo'<li class="main-navigation__list-item">
                             <a class="main-navigation__list-item-link" href="#">'
                              .$project_item.'</a>

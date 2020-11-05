@@ -2,6 +2,45 @@
 //подключение функций
 include_once('helpers.php');
 
+//подключение к базе данных mysql
+$link = mysqli_connect("localhost", "root", "root", 'mydeal');
+
+if ($link == false){
+    print("Ошибка: Невозможно подключиться к MySQL " . mysqli_connect_error());
+}
+else {
+    print("Соединение установлено успешно");
+}
+
+// Установка кодировки
+mysqli_set_charset($link, "utf8");
+
+// запрос на редактирование
+/*$sql = "UPDATE users SET 
+username = 'Иван', 
+email = 'ivan@mail.ru', 
+pass = '11111' WHERE id = 3";*/
+
+// выбрать категории задачи из бд
+$sql = "SELECT category FROM project";
+$result = mysqli_query($link, $sql);
+
+if ($result == false) {
+    print("Произошла ошибка при выполнении запроса");
+}
+
+$project = mysqli_fetch_all($result, MYSQLI_NUM);  //преобразование данных из бд в массив
+
+// выбрать задачи из бд
+$sql = "SELECT category FROM project";
+var_dump($project);
+
+
+
+
+
+
+
 // счетчик количества задач по категориям
 function taskCount($project_item, $task) {
     $task_count = 0;                
@@ -14,7 +53,7 @@ function taskCount($project_item, $task) {
 }
 
 // массив с названиями категорий задач
-$project = array( "Входящие", "Учеба", "Работа", "Домашние дела", "Авто");
+//$project = array( "Входящие", "Учеба", "Работа", "Домашние дела", "Авто");
 
 // массив c описанием задач
 $task = array (
