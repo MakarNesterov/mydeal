@@ -24,7 +24,15 @@
 
                 <div class="main-header__side-item user-menu">
                     <div class="user-menu__data">
-                        <p>Константин</p>
+                        
+                        <p>
+                        <?php 
+                        // Выбрать пользователя.
+                        foreach($users as $user) {
+                            echo $user['username'];
+                        }    
+                        ?>
+                        </p>
 
                         <a href="#">Выйти</a>
                     </div>

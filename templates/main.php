@@ -5,12 +5,14 @@
 
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
-                        <?php for ($i = 0; $i < count($project); $i++) {
-                        $project_item = $project[$i][0];
+                        <?php foreach ($project as $value) {
+                        $project_item = $value['category'];
+                        $project_id = $value['id'];
+                        //var_dump($project_id);
                         echo'<li class="main-navigation__list-item">
                             <a class="main-navigation__list-item-link" href="#">'
                              .$project_item.'</a>
-                            <span class="main-navigation__list-item-count">'.taskCount($project_item, $task).'</span>
+                            <span class="main-navigation__list-item-count">'.taskCount($project_id, $task).'</span>
                         </li>'; } ?>
                     </ul>
                 </nav>
@@ -44,17 +46,25 @@
                 </div>
 
                 <table class="tasks"> <?php foreach ($task as $value) {                   
-                    if ($value["Выполнен"] == true && $show_complete_tasks == 0) continue;                    
-                    else if ($value["Выполнен"] == true) {
+                    if ($value["status_value"] == true && $show_complete_tasks == 0) continue;                    
+                    else if ($value["status_value"] == true) {
                         $task_completed = "task--completed";
                     }
                     else {$task_completed = "";}
-                    // задание 6
+                    
+                    // Преобразуем текстовое представление даты (время сейчас) в метку времени UNIX.
                     $date_now = strtotime('now');
-                    $date_task = date_create($value["Дата выполнения"]);
-                    $date_task_u = date_format($date_task, 'U');
-                   
-                    if ($date_task_u - $date_now <= 86400) {
+                    
+                    // Форматируем дату дедлайнов из БД в формат 'd.m.Y'.                
+                    $date = date_create_from_format('Y-d-m', $value["deadline"]);
+                    $date = date_format($date, 'd.m.Y');
+                    
+                    // Преобразуем форматированную дату дедлайна в UNIX.
+                    $date_future = strtotime($date);
+                    
+                    // Если разница между датой дедлайна и текущей датой меньше или равно суткам -->
+                    if ($date_future - $date_now <= 86400) {
+                    // То переменная-класс присвоит класс "task--important", помечающий задачу с истекающими сроками выполнения.
                         $task_important = 'task--important';
                     }
                     else {
@@ -65,7 +75,7 @@
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
                                 <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
-                                <span class="checkbox__text">'.$value["Задача"].'</span>
+                                <span class="checkbox__text">'.$value["task_name"].'</span>
                             </label>
                         </td>
 
@@ -73,7 +83,7 @@
                             <a class="download-link" href="#">Home.psd</a>
                         </td>
 
-                        <td class="task__date">'.$value["Дата выполнения"].'</td>
+                        <td class="task__date">'.$date.'</td>
                         <td class="task__controls"></td>
                     </tr>';} ?>
                     <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->

@@ -2,12 +2,29 @@ INSERT INTO `users` (`username`, `email`, `pass`) VALUES
     ('Петр', 'petr@mail.ru', '12345'),
     ('Саша', 'sasha@mail.ru', '54321');
 
+// Добавим новых пользователей для занятия 6.
+
+INSERT INTO `users` (`username`, `email`, `pass`) VALUES
+    ('Иван', 'ivan@mail.ru', '11111'),
+    ('Федор', 'fedor@mail.ru', '33333');
+
+
 INSERT INTO `project` (`category`, `userID`) VALUES
     ('Входящие', '1'),
     ('Учеба', '1'),
     ('Работа', '1'),
     ('Домашние дела', '2'),
     ('Авто', '2');
+
+// Добавим новые проекты для занятия 6.
+
+INSERT INTO `project` (`category`, `userID`) VALUES
+    ('Здоровье', '3'),
+    ('Дела по дому', '3'),
+    ('Развлечения', '3'),
+    ('Баня', '4'),
+    ('Рыбалка', '4'),
+    ('Животные', '4');
 
 INSERT INTO `task` (`task_name`, `status_value`, `deadline`, `userID`, `projectID`) VALUES
     ('Собеседование в IT компании', '0', '2020.09.11.', '1', '3'),
@@ -16,6 +33,16 @@ INSERT INTO `task` (`task_name`, `status_value`, `deadline`, `userID`, `projectI
     ('Сделать задание первого раздела', '1', '2020.06.11', '1', '2'),
     ('Купить корм для кота', '0', '2020.07.11', '2', '4'),
     ('Заказать пиццу', '0', '2020.08.11', '2', '4');
+
+// Добавим новые задачи для занятия 6.
+
+INSERT INTO `task` (`task_name`, `status_value`, `deadline`, `userID`, `projectID`) VALUES
+    ('Записаться к врачу', '0', '2020.07.11.', '3', '6'),
+    ('Полить цветы', '1', '2020.08.11', '3', '7'),
+    ('Поход в бар', '0', '2020.09.11', '3', '8'),
+    ('Заменить камни', '0', '2020.07.11', '4', '9'),
+    ('Купить новую удочку', '1', '2020.08.11', '4', '10'),
+    ('Накопать червей', '0', '2020.09.11', '4', '10');
 
 
 SELECT * FROM `таблица`;  //выбрать все из таблицы
@@ -63,4 +90,15 @@ UPDATE `task` SET `task_name` = 'Собеседование в IT фирме' WH
 
 
 
+// Запрос на редактирование в php
+/*$sql = "UPDATE users SET 
+username = 'Иван', 
+email = 'ivan@mail.ru', 
+pass = '11111' WHERE id = 3";*/
 
+// Запрос на добавление в php
+/*$sql = "UPDATE users SET 
+username = 'Павел', 
+email = 'pavel@mail.ru', 
+pass = '44444' WHERE id = 5";
+$result = mysqli_query($link, $sql);*/

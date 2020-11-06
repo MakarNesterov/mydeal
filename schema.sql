@@ -1,7 +1,5 @@
 CREATE DATABASE mydeal CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI; 
-
 USE mydeal;
-
 
 CREATE TABLE users (
     id INT NOT NULL AUTO_INCREMENT,
@@ -33,9 +31,7 @@ CREATE TABLE task (
     FOREIGN KEY(projectID) REFERENCES project(id)
 );
 
-
 CREATE UNIQUE INDEX categoryID ON project(category, userID);
-
 CREATE INDEX linkID ON task(link); 
 
 
